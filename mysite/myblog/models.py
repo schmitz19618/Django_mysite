@@ -13,3 +13,14 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Category(models.Model):
+
+    name = models.CharField(max_length=128)
+    description = models.TextField(blank=True)
+    posts = models.ManyToManyField(Post, blank=True, null=True,
+                                   related_name='categories')
+
+    def __unicode__(self):
+        return self.name
